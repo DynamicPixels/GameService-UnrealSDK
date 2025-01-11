@@ -1,0 +1,23 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "DynamicPixelsUnrealSDK",
+	"Description": "Empower your games with most advance online features",
+	"Category": "Other",
+	"CreatedBy": "Amir Farahani",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EngineVersion": "5.5.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "DynamicPixelsUnrealSDK",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
