@@ -9,47 +9,47 @@ struct DYNAMICPIXELSUNREALSDK_API FUser
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User", meta = (JsonName = "name"))
-	FString Name;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User")
+	FString name;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User", meta = (JsonName = "email"))
-	FString Email;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User")
+	FString email;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User", meta = (JsonName = "phone_number"))
-	FString PhoneNumber;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User")
+	FString phone_number;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User", meta = (JsonName = "image"))
-	FString Image;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User")
+	FString image;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User", meta = (JsonName = "username"))
-	FString Username;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User")
+	FString username;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User", meta = (JsonName = "label"))
-	FString Label;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User")
+	FString label;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User", meta = (JsonName = "tags"))
-	FString Tags;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User")
+	FString tags;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User", meta = (JsonName = "is_ban"))
-	bool IsBan = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User")
+	bool is_ban = false;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User", meta = (JsonName = "is_tester"))
-	bool IsTester = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User")
+	bool is_tester = false;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User", meta = (JsonName = "is_guest"))
-	bool IsGuest = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User")
+	bool is_guest = false;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User", meta = (JsonName = "google_token"))
-	FString GoogleToken;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User")
+	FString google_token;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User", meta = (JsonName = "fcm_id"))
-	FString FcmId;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User")
+	FString fcm_id;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User", meta = (JsonName = "first_login"))
-	TOptional<FDateTime> FirstLogin;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User")
+	FString first_login;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User", meta = (JsonName = "last_login"))
-	TOptional<FDateTime> LastLogin;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "User")
+	FString last_login;
 };
 
 USTRUCT(BlueprintType)
@@ -58,112 +58,115 @@ struct DYNAMICPIXELSUNREALSDK_API FDevice
 	GENERATED_BODY()
 
 	FDevice() = default;
+	
 	explicit FDevice(FSystemInfo Info)
 	{
-		DeviceModel = Info.DeviceModel;
-		DeviceName = Info.DeviceName;
-		DeviceType = Info.DeviceType;
-		DeviceId = Info.DeviceUniqueId;
-		GraphicsDeviceName = Info.GraphicsDeviceName;
-		GraphicsDeviceVendor = Info.GraphicsDeviceVendor;
-		GraphicsMemorySize = FString::FromInt(Info.GraphicsMemorySize);
-		ProcessorCount = FString::FromInt(Info.ProcessorCount);
-		ProcessorFrequency = FString::FromInt(Info.ProcessorFrequency);
-		ProcessorType = Info.ProcessorType;
-		NetworkType = Info.NetworkType;
-		OperatingSystem = Info.OperatingSystem;
+		device_model = Info.DeviceModel;
+		device_name = Info.DeviceName;
+		device_type = Info.DeviceType;
+		device_id = Info.DeviceUniqueId;
+		graphic_device_name = Info.GraphicsDeviceName;
+		graphic_device_vendor = Info.GraphicsDeviceVendor;
+		graphic_memory_size = FString::FromInt(Info.GraphicsMemorySize);
+		processor_count = FString::FromInt(Info.ProcessorCount);
+		processor_frequency = FString::FromInt(Info.ProcessorFrequency);
+		processor_type = Info.ProcessorType;
+		network_type = Info.NetworkType;
+		operating_system = Info.OperatingSystem;
+		first_login = TEXT("2025-01-14T10:35:21.1234567"); 
+		last_login = TEXT("2025-01-14T10:35:21.1234567"); 
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "device_id"))
-	FString DeviceId;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString device_id;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "first_login"))
-	TOptional<FDateTime> FirstLogin;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString first_login;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString last_login;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "last_login"))
-	TOptional<FDateTime> LastLogin;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString package_name;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "package_name"))
-	FString PackageName;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString sdk_version = TEXT("1.0.0");
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "sdk_version"))
-	FString SdkVersion = TEXT("1.0.0");
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString version_name;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "version_name"))
-	FString VersionName;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString version_code;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "version_code"))
-	FString VersionCode;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString os_api_level;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "os_api_level"))
-	FString OsApiLevel;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString from;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "from"))
-	FString From;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString model;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "model"))
-	FString Model;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString product;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "product"))
-	FString Product;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString carrier_name;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "carrier_name"))
-	FString CarrierName;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString manufacturer;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "manufacturer"))
-	FString Manufacturer;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString other_tags;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "other_tags"))
-	FString OtherTags;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString screen_width;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "screen_width"))
-	FString ScreenWidth;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString screen_height;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "screen_height"))
-	FString ScreenHeight;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString sdcard_state;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "sdcard_state"))
-	FString SdcardState;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString game_orientation;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "game_orientation"))
-	FString GameOrientation;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString network_type;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "network_type"))
-	FString NetworkType;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString mac_address;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "mac_address"))
-	FString MacAddress;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString ip_address;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "ip_address"))
-	FString IpAddress;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString device_name;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "device_name"))
-	FString DeviceName;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString device_model;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "device_model"))
-	FString DeviceModel;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString device_type;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "device_type"))
-	FString DeviceType;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString operating_system;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "operating_system"))
-	FString OperatingSystem;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString processor_type;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "processor_type"))
-	FString ProcessorType;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString processor_count;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "processor_count"))
-	FString ProcessorCount;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString processor_frequency;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "processor_frequency"))
-	FString ProcessorFrequency;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString graphic_device_name;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "graphic_device_name"))
-	FString GraphicsDeviceName;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString graphic_device_vendor;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "graphic_device_vendor"))
-	FString GraphicsDeviceVendor;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device", meta = (JsonName = "graphic_memory_size"))
-	FString GraphicsMemorySize;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Device")
+	FString graphic_memory_size;
 };

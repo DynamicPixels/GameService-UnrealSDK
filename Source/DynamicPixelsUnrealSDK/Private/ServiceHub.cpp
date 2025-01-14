@@ -34,6 +34,7 @@ void UServiceHub::Configure(FString clientId, FString clientSecret, FSystemInfo 
 		return;
 	Agent->Config(
 		FWebSocketConfiguration(TEXT("wss://ws-europe.dynamicpixels.dev/ws"), maxAttempts, reconnectDelay, 10));
+	Token = TEXT("");
 	ClientId = clientId;
 	ClientSecret = clientSecret;
 	DebugMode = debugMode;

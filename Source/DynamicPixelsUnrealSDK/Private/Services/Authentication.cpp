@@ -28,6 +28,7 @@ UAuthentication::UAuthentication()
 void UAuthentication::RegisterWithEmail(FRegisterWithEmailParams params, FSuccessfulLoginCallback successResponse,
 	FFailedLoginCallback errorResponse)
 {
+	params.device_info = FDevice(UServiceHub::SystemInfo);
 	FString StringJson;
 	FJsonObjectConverter::UStructToJsonObjectString(params, StringJson);
 	WebRequest::Post<FLoginResponse>(SignupUrl, StringJson, TMap<FString, FString>(), [this, errorResponse, successResponse](TResponseWrapper<FLoginResponse> Response)
@@ -37,7 +38,7 @@ void UAuthentication::RegisterWithEmail(FRegisterWithEmailParams params, FSucces
 			errorResponse.Execute(Response.ErrorCode, Response.ErrorMessage);
 			return;
 		}
-		this->SetupSdk(Response.Result.Token, Response.Result.User, Response.Result.ConnectionInfo, [successResponse, Response]()
+		this->SetupSdk(Response.Result.token, Response.Result.user, Response.Result.connection, [successResponse, Response]()
 		{
 			successResponse.Execute(Response.Result);
 		}, [errorResponse]()
@@ -50,6 +51,7 @@ void UAuthentication::RegisterWithEmail(FRegisterWithEmailParams params, FSucces
 void UAuthentication::LoginWithEmail(FLoginWithEmailParams params, FSuccessfulLoginCallback successResponse,
 	FFailedLoginCallback errorResponse)
 {
+	params.device_info = FDevice(UServiceHub::SystemInfo);
 	FString StringJson;
 	FJsonObjectConverter::UStructToJsonObjectString(params, StringJson);
 	WebRequest::Post<FLoginResponse>(SigninUrl, StringJson, TMap<FString, FString>(), [this, errorResponse, successResponse](TResponseWrapper<FLoginResponse> Response)
@@ -59,7 +61,7 @@ void UAuthentication::LoginWithEmail(FLoginWithEmailParams params, FSuccessfulLo
 			errorResponse.Execute(Response.ErrorCode, Response.ErrorMessage);
 			return;
 		}
-		this->SetupSdk(Response.Result.Token, Response.Result.User, Response.Result.ConnectionInfo, [successResponse, Response]()
+		this->SetupSdk(Response.Result.token, Response.Result.user, Response.Result.connection, [successResponse, Response]()
 		{
 			successResponse.Execute(Response.Result);
 		}, [errorResponse]()
@@ -72,6 +74,7 @@ void UAuthentication::LoginWithEmail(FLoginWithEmailParams params, FSuccessfulLo
 void UAuthentication::LoginWithGoogleParams(FLoginWithGoogleParams params, FSuccessfulLoginCallback successResponse,
 	FFailedLoginCallback errorResponse)
 {
+	params.device_info = FDevice(UServiceHub::SystemInfo);
 	FString StringJson;
 	FJsonObjectConverter::UStructToJsonObjectString(params, StringJson);
 	WebRequest::Post<FLoginResponse>(GoogleAuthUrl, StringJson, TMap<FString, FString>(), [this, errorResponse, successResponse](TResponseWrapper<FLoginResponse> Response)
@@ -81,7 +84,7 @@ void UAuthentication::LoginWithGoogleParams(FLoginWithGoogleParams params, FSucc
 			errorResponse.Execute(Response.ErrorCode, Response.ErrorMessage);
 			return;
 		}
-		this->SetupSdk(Response.Result.Token, Response.Result.User, Response.Result.ConnectionInfo, [successResponse, Response]()
+		this->SetupSdk(Response.Result.token, Response.Result.user, Response.Result.connection, [successResponse, Response]()
 		{
 			successResponse.Execute(Response.Result);
 		}, [errorResponse]()
@@ -94,6 +97,7 @@ void UAuthentication::LoginWithGoogleParams(FLoginWithGoogleParams params, FSucc
 void UAuthentication::LoginWithSteam(FLoginWithSteamParams params, FSuccessfulLoginCallback successResponse,
 	FFailedLoginCallback errorResponse)
 {
+	params.device_info = FDevice(UServiceHub::SystemInfo);
 	FString StringJson;
 	FJsonObjectConverter::UStructToJsonObjectString(params, StringJson);
 	WebRequest::Post<FLoginResponse>(SteamAuthUrl, StringJson, TMap<FString, FString>(), [this, errorResponse, successResponse](TResponseWrapper<FLoginResponse> Response)
@@ -103,7 +107,7 @@ void UAuthentication::LoginWithSteam(FLoginWithSteamParams params, FSuccessfulLo
 			errorResponse.Execute(Response.ErrorCode, Response.ErrorMessage);
 			return;
 		}
-		this->SetupSdk(Response.Result.Token, Response.Result.User, Response.Result.ConnectionInfo, [successResponse, Response]()
+		this->SetupSdk(Response.Result.token, Response.Result.user, Response.Result.connection, [successResponse, Response]()
 		{
 			successResponse.Execute(Response.Result);
 		}, [errorResponse]()
@@ -116,6 +120,7 @@ void UAuthentication::LoginWithSteam(FLoginWithSteamParams params, FSuccessfulLo
 void UAuthentication::LoginAsGuest(FLoginAsGuestParams params, FSuccessfulLoginCallback successResponse,
                                    FFailedLoginCallback errorResponse)
 {
+	params.device_info = FDevice(UServiceHub::SystemInfo);
 	FString StringJson;
 	FJsonObjectConverter::UStructToJsonObjectString(params, StringJson);
 	WebRequest::Post<FLoginResponse>(GuestAuthUrl, StringJson, TMap<FString, FString>(), [this, errorResponse, successResponse](TResponseWrapper<FLoginResponse> Response)
@@ -125,7 +130,7 @@ void UAuthentication::LoginAsGuest(FLoginAsGuestParams params, FSuccessfulLoginC
 			errorResponse.Execute(Response.ErrorCode, Response.ErrorMessage);
 			return;
 		}
-		this->SetupSdk(Response.Result.Token, Response.Result.User, Response.Result.ConnectionInfo, [successResponse, Response]()
+		this->SetupSdk(Response.Result.token, Response.Result.user, Response.Result.connection, [successResponse, Response]()
 		{
 			successResponse.Execute(Response.Result);
 		}, [errorResponse]()
@@ -138,6 +143,7 @@ void UAuthentication::LoginAsGuest(FLoginAsGuestParams params, FSuccessfulLoginC
 void UAuthentication::LoginWithToken(FLoginWithTokenParams params, FSuccessfulLoginCallback successResponse,
 	FFailedLoginCallback errorResponse)
 {
+	params.device_info = FDevice(UServiceHub::SystemInfo);
 	FString StringJson;
 	FJsonObjectConverter::UStructToJsonObjectString(params, StringJson);
 	WebRequest::Post<FLoginResponse>(LoginWithTokenUrl, StringJson, TMap<FString, FString>(), [this, errorResponse, successResponse](TResponseWrapper<FLoginResponse> Response)
@@ -147,7 +153,7 @@ void UAuthentication::LoginWithToken(FLoginWithTokenParams params, FSuccessfulLo
 			errorResponse.Execute(Response.ErrorCode, Response.ErrorMessage);
 			return;
 		}
-		this->SetupSdk(Response.Result.Token, Response.Result.User, Response.Result.ConnectionInfo, [successResponse, Response]()
+		this->SetupSdk(Response.Result.token, Response.Result.user, Response.Result.connection, [successResponse, Response]()
 		{
 			successResponse.Execute(Response.Result);
 		}, [errorResponse]()
@@ -193,6 +199,7 @@ void UAuthentication::SendOtaToken(FSendOtaTokenParams params, FSuccessfulCallba
 void UAuthentication::VerifyOtaToken(FVerifyOtaToken params, FSuccessfulLoginCallback successResponse,
 	FFailedLoginCallback errorResponse)
 {
+	params.device_info = FDevice(UServiceHub::SystemInfo);
 	FString StringJson;
 	FJsonObjectConverter::UStructToJsonObjectString(params, StringJson);
 	WebRequest::Post<FLoginResponse>(LoginWithTokenUrl, StringJson, TMap<FString, FString>(), [this, errorResponse, successResponse](TResponseWrapper<FLoginResponse> Response)
@@ -202,7 +209,7 @@ void UAuthentication::VerifyOtaToken(FVerifyOtaToken params, FSuccessfulLoginCal
 			errorResponse.Execute(Response.ErrorCode, Response.ErrorMessage);
 			return;
 		}
-		this->SetupSdk(Response.Result.Token, Response.Result.User, Response.Result.ConnectionInfo, [successResponse, Response]()
+		this->SetupSdk(Response.Result.token, Response.Result.user, Response.Result.connection, [successResponse, Response]()
 		{
 			successResponse.Execute(Response.Result);
 		}, [errorResponse]()
@@ -219,16 +226,18 @@ void UAuthentication::SetupSdk(FString Token, FUser User, FConnectionInfo Connec
 	UServiceHub::IsAvailable = true;
 	UServiceHub::Token = Token;
 	UServiceHub::User = User;
-	if (ConnectionInfo.Protocol == "wss")
+	if (ConnectionInfo.protocol == "wss")
 	{
 		UServiceHub::Agent->OnConnect.AddLambda([Success]()
 		{
 			Success();
 			UServiceHub::Agent->OnConnect.Clear();
+			UServiceHub::Agent->OnFailedConnection.Clear();
 		});
-		UServiceHub::Agent->OnConnect.AddLambda([Fail]()
+		UServiceHub::Agent->OnFailedConnection.AddLambda([Fail]()
 		{
 			Fail();
+			UServiceHub::Agent->OnConnect.Clear();
 			UServiceHub::Agent->OnFailedConnection.Clear();
 		});
 	}

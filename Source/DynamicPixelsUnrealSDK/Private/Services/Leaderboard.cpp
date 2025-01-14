@@ -6,7 +6,7 @@
 void ULeaderboard::GetLeaderBoards(FGetLeaderboardsParams params, FSuccessfulLeaderboardListResponse successResponse,
                                    FFailedLoginCallback errorResponse) const
 {
-	WebRequest::Get<FLeaderboardModelArrayResponse>(GetLeaderboardsUrl(params.Skip, params.Limit, params.Label), TMap<FString, FString>(),
+	WebRequest::Get<FLeaderboardModelArrayResponse>(GetLeaderboardsUrl(params.skip, params.limit, params.label), TMap<FString, FString>(),
 										 [this, errorResponse, successResponse](
 										 TResponseWrapper<FLeaderboardModelArrayResponse> Response)
 										 {
@@ -24,7 +24,7 @@ void ULeaderboard::GetPartiesScores(FGetScoresParams params, FSuccessfulPartiesS
 {
 	FString StringJson;
 	FJsonObjectConverter::UStructToJsonObjectString(params, StringJson);
-	WebRequest::Post<FPartyScoreArrayResponse>(GetPartiesScoresUrl(params.LeaderboardId, params.Skip, params.Limit), StringJson, TMap<FString, FString>(),
+	WebRequest::Post<FPartyScoreArrayResponse>(GetPartiesScoresUrl(params.leaderboard_id, params.skip, params.limit), StringJson, TMap<FString, FString>(),
 								  [this, errorResponse, successResponse](TResponseWrapper<FPartyScoreArrayResponse> Response)
 								  {
 									  if (!Response.Successful)
@@ -41,7 +41,7 @@ void ULeaderboard::GetUsersScores(FGetScoresParams params, FSuccessfulUsersScore
 {
 	FString StringJson;
 	FJsonObjectConverter::UStructToJsonObjectString(params, StringJson);
-	WebRequest::Post<FUserScoreArrayResponse>(GetUsersScoresUrl(params.LeaderboardId, params.Skip, params.Limit), StringJson, TMap<FString, FString>(),
+	WebRequest::Post<FUserScoreArrayResponse>(GetUsersScoresUrl(params.leaderboard_id, params.skip, params.limit), StringJson, TMap<FString, FString>(),
 								  [this, errorResponse, successResponse](TResponseWrapper<FUserScoreArrayResponse> Response)
 								  {
 									  if (!Response.Successful)
@@ -58,7 +58,7 @@ void ULeaderboard::GetFriendsScores(FGetFriendsScoresParams params, FSuccessfulU
 {
 	FString StringJson;
 	FJsonObjectConverter::UStructToJsonObjectString(params, StringJson);
-	WebRequest::Post<FUserScoreArrayResponse>(GetMyFriendsScoreUrl(params.LeaderboardId), StringJson, TMap<FString, FString>(),
+	WebRequest::Post<FUserScoreArrayResponse>(GetMyFriendsScoreUrl(params.leaderboard_id), StringJson, TMap<FString, FString>(),
 								  [this, errorResponse, successResponse](TResponseWrapper<FUserScoreArrayResponse> Response)
 								  {
 									  if (!Response.Successful)
@@ -75,7 +75,7 @@ void ULeaderboard::GetMyScore(FGetCurrentUserScoreParams params, FSuccessfulUser
 {
 	FString StringJson;
 	FJsonObjectConverter::UStructToJsonObjectString(params, StringJson);
-	WebRequest::Post<FUserScore>(GetCurrentUserScoreUrl(params.LeaderboardId), StringJson, TMap<FString, FString>(),
+	WebRequest::Post<FUserScore>(GetCurrentUserScoreUrl(params.leaderboard_id), StringJson, TMap<FString, FString>(),
 								  [this, errorResponse, successResponse](TResponseWrapper<FUserScore> Response)
 								  {
 									  if (!Response.Successful)
@@ -92,7 +92,7 @@ void ULeaderboard::SubmitScore(FSubmitScoreParams params, FSuccessfulUserScoreRe
 {
 	FString StringJson;
 	FJsonObjectConverter::UStructToJsonObjectString(params, StringJson);
-	WebRequest::Post<FUserScore>(GetCurrentUserScoreUrl(params.LeaderboardId), StringJson, TMap<FString, FString>(),
+	WebRequest::Post<FUserScore>(SubmitScoreUrl(params.leaderboard_id), StringJson, TMap<FString, FString>(),
 								  [this, errorResponse, successResponse](TResponseWrapper<FUserScore> Response)
 								  {
 									  if (!Response.Successful)

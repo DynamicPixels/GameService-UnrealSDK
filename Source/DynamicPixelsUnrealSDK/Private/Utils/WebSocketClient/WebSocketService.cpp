@@ -81,6 +81,7 @@ void WebSocketService::OnConnectionError(const FString& ErrorMessage)
 		Connect();
 	} else
 	{
+		OnFailedConnection.Broadcast();
 		WebSocketClient->Close();
 	}
 }

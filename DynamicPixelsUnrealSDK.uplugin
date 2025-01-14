@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
-	"Version": 1,
-	"VersionName": "1.0",
+	"Version": 2,
+	"VersionName": "0.0.2",
 	"FriendlyName": "DynamicPixelsUnrealSDK",
 	"Description": "Empower your games with most advance online features",
 	"Category": "Other",
@@ -10,14 +10,19 @@
 	"DocsURL": "",
 	"MarketplaceURL": "",
 	"SupportURL": "",
-	"EngineVersion": "5.5.0",
 	"CanContainContent": true,
-	"Installed": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
 	"Modules": [
 		{
 			"Name": "DynamicPixelsUnrealSDK",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		}
-	]
+	],
+	"EngineVersionRange": {
+		"MinEngineVersion": "5.3.0",
+		"MaxEngineVersion": null
+	}
 }

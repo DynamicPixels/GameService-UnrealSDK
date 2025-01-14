@@ -10,11 +10,11 @@ USTRUCT(BlueprintType)
 struct DYNAMICPIXELSUNREALSDK_API FConnectionInfo
 {
 	GENERATED_BODY()
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="ConnectionInfo", meta = (JsonName = "endpoint"))
-	FString Endpoint;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="ConnectionInfo", meta = (JsonName = "protocol"))
-	FString Protocol;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="ConnectionInfo", meta = (JsonName = "version"))
-	FString Version;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="ConnectionInfo")
+	FString endpoint;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="ConnectionInfo")
+	FString protocol;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="ConnectionInfo")
+	FString version;
 
 };

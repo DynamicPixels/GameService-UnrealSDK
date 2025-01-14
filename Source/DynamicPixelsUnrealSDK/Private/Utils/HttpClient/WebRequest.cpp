@@ -147,7 +147,7 @@ void WebRequest::Post(FString Url, FString Body, TMap<FString, FString> Headers,
 		          if (Response.Successful)
 		          {
 			          if (!Response.Data.IsEmpty())
-			          {
+			          { 
 				          TSharedPtr<FJsonObject> JsonObject;
 				          TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(Response.Data);
 				          if (FJsonSerializer::Deserialize(Reader, JsonObject) && JsonObject.IsValid())
@@ -193,6 +193,8 @@ void WebRequest::DoRequest(FString Url, const FString& Method, FString Body, TMa
 	Url = BaseUrl() + Url;
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> Request = FHttpModule::Get().CreateRequest();
 	Request->SetHeader(TEXT("Content-Type"), TEXT("application/json"));
+	if (!UServiceHub::Token.IsEmpty())
+		Request->SetHeader(TEXT("Authorization"), FString::Printf(TEXT("Bearer %s"), *UServiceHub::Token));
 	Request->SetURL(Url);
 	Request->SetVerb(Method);
 	for (auto Header : Headers)
@@ -221,7 +223,7 @@ void WebRequest::OnHttpResponseReceived(FHttpRequestPtr Request, FHttpResponsePt
 	}
 	auto ErrorResponse = FErrorResponse::FromJson(Result);
 	auto ErrorCode = FErrorMapper::GetErrorCode(ErrorResponse.Message);
-	if (ErrorCode == EErrorCode::UnknownError)
+	if (ErrorCode == EErrorCode::UnknownError && ErrorResponse.Message.IsEmpty())
 	{
 		CallbackFunction(FRequestResponse(TEXT(""), false, ErrorCode, TEXT("")));
 		return;

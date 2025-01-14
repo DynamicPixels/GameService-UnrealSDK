@@ -12,14 +12,14 @@ USTRUCT(BlueprintType)
 struct DYNAMICPIXELSUNREALSDK_API FLoginResponse
 {
     GENERATED_BODY()
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Login Response", meta = (JsonName = "user"))
-    FUser User;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Login Response")
+    FUser user;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Login Response", meta = (JsonName = "token"))
-    FString Token;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Login Response")
+    FString token;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Login Response", meta = (JsonName = "connection"))
-    FConnectionInfo ConnectionInfo;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Login Response")
+    FConnectionInfo connection;
 };
 
 USTRUCT(BlueprintType)
@@ -34,11 +34,11 @@ USTRUCT(BlueprintType)
 struct DYNAMICPIXELSUNREALSDK_API FPartyMemberArrayResponse
 {
     GENERATED_BODY()
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Party Member Array Response", meta = (JsonName = "list"))
-    TArray<FDynamicPartyMember> List;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Party Member Array Response")
+    TArray<FDynamicPartyMember> list;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Party Member Array Response", meta = (JsonName = "totalCount"))
-    int TotalCount;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Party Member Array Response")
+    int totalCount;
 };
 
 USTRUCT(BlueprintType)

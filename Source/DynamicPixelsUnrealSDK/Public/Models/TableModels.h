@@ -5,6 +5,6 @@ USTRUCT(BlueprintType)
 struct DYNAMICPIXELSUNREALSDK_API FRow
 {
 	GENERATED_BODY()
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Table", meta = (JsonName = "id"))
-	int Id;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Table")
+	int id;
 };
