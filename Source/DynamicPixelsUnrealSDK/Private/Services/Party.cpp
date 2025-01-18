@@ -122,7 +122,7 @@ void UParty::GetPartyMembers(FGetPartyMembersParams params, FSuccessfulPartyRich
 	                                          });
 }
 
-void UParty::SetMemberVariables(FLoginWithTokenParams params, FSuccessfulLoginCallback successResponse,
+void UParty::SetMemberVariables(FSetMemberVariablesParams params, FSuccessfulLoginCallback successResponse,
 	FFailedLoginCallback errorResponse) const
 {
 }
